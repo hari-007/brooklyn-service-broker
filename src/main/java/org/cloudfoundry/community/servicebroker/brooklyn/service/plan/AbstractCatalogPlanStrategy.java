@@ -96,6 +96,11 @@ public abstract class AbstractCatalogPlanStrategy implements CatalogPlanStrategy
                     continue;
                 }
 
+                Maybe<Map<String, Object>> brokerConfig = getBrokerConfig(rootElement);
+                if(brokerConfig.isPresent()) {
+                    brokerConfig.get();
+                }
+
                 Map<String, Object> metadata = getServiceDefinitionMetadata(app.getId(), app.getIconUrl(), app.getPlanYaml());
                 definitions.put(id, new ServiceDefinition(
                         id, name, app.getDescription(),
